@@ -41,7 +41,7 @@ function Sales(props) {
               <p className='font-light text-[12px]'>{rating}<span className='text-[#918E9B] font-light text-[12px]'>{num} USA</span></p>
             </div>
             <p className='text-[#222222] font-light text-[12px]'>{description}</p>
-            <p className='font-bold text-[12px]'>From {price} <span className='font-light'>/ person</span></p>
+            <p className='font-bold text-[12px]'>From ${price} <span className='font-light'>/ person</span></p>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ function App() {
           rating="5.0"
           num="(6)"
           description="Life lessons with Katie Zaferes"
-          price="$136"
+          price={136}
         />
          <Sales
           img="./wedding-photography 1.png"
@@ -70,7 +70,7 @@ function App() {
           rating="5.0"
           num="(30)"
           description="Learn wedding photography"
-          price="$125"
+          price={125}
         />
          <Sales
           img="./mountain-bike 1.png"
@@ -78,7 +78,7 @@ function App() {
           rating="4.8"
           num="(2)"
           description="Group Mountain Biking"
-          price="$50"
+          price={50}
         />
         </div>
       </div>
@@ -88,6 +88,8 @@ function App() {
 
 
 export default App
+
+
 
 
 
