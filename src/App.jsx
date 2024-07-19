@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import sales from './sales.js'
 
 function NavBar(){
   return (
@@ -26,22 +27,28 @@ function MainContent(){
   )
 }
 function Sales(props) {
-  const { img, word, rating, num, description, price } = props;
+  // const { img, rating, reviewCount, description, price } = props;
+  let word 
+  if(props.openSpots == 0){
+    word = "SOLD OUT"
+  } else if(props.location == "Online"){
+    word = "ONLINE"
+  }
   return (
     <>
       <div className=''>
         <div className='relative px-2'>
-          <img src={img} className='rounded-lg w-[176px] h-[235px]' />
-          <div className='absolute border bg-white top-2 left-6 px-2 rounded-sm'>
-            <p className='text-[10.24px]'>{word}</p>
-          </div>
+          <img src={props.img} className='rounded-lg w-[176px] h-[235px]' />
+          {word && <div className='absolute border bg-white top-2 left-6 px-2 rounded-sm'>
+            <p className='text-[10.24px] font-semibold'>{word}</p>
+          </div>}
           <div>
             <div className='flex gap-1 items-center mt-2'>
               <img src="./Star 1.png" className='w-[14px]' />
-              <p className='font-light text-[12px]'>{rating}<span className='text-[#918E9B] font-light text-[12px]'>{num} USA</span></p>
+              <p className='font-light text-[12px]'>{props.stats.rating}<span className='text-[#918E9B] font-light text-[12px]'>({props.stats.reviewCount}) USA</span></p>
             </div>
-            <p className='text-[#222222] font-light text-[12px]'>{description}</p>
-            <p className='font-bold text-[12px]'>From ${price} <span className='font-light'>/ person</span></p>
+            <p className='text-[#222222] font-light text-[12px]'>{props.description}</p>
+            <p className='font-bold text-[12px]'>From ${props.price} <span className='font-light'>/ person</span></p>
           </div>
         </div>
       </div>
@@ -50,13 +57,19 @@ function Sales(props) {
 }
 
 function App() {
+  const salesElements = sales.map(sale => (
+    // <Sales img={sale.img} rating={sale.stats.rating} num={sale.num} reviewCount={sale.stats.reviewCount} location={sale.location} description={sale.description} openSpots={sale.openSpots} price={sale.price} />
+    // <Sales sale = {sale}/> //rendering the component containing sales
+    <Sales {...sale} />
+  ));
   return (
     <>
       <div className='rounded-lg border shadow-lg mx-auto w-[550px] my-10 h-[853px]'>
         <NavBar />
         <MainContent />
         <div className='flex justify-between'>
-        <Sales
+          {salesElements}
+        {/* <Sales
           img="./image 12.png"
           word="SOLD OUT"
           rating="5.0"
@@ -79,7 +92,7 @@ function App() {
           num="(2)"
           description="Group Mountain Biking"
           price={50}
-        />
+        /> */}
         </div>
       </div>
     </>
