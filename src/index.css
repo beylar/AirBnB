@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark-mode {
+  background-color: #2B283A;
+  color: white;
+}
+
+.light-mode {
+  background-color: white;
+  color: black;
+}
+
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
